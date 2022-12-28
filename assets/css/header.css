@@ -1,0 +1,11 @@
+.header_container{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #171717;
+    color: #757575;
+    font-size: 18pt;
+    padding-top: 10px;
+}

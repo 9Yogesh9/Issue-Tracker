@@ -1,0 +1,107 @@
+/* Rough containers */
+.main_container {
+  width: 100%;
+  height: 90vh;
+  color: #EEEEEE;
+  background-color: #171717;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.left_nav {
+  width: 25%;
+  height: 80vh;
+  border-right: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.content_container {
+  width: 70%;
+  height: 80vh;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow-y: auto;
+  align-items: center;
+}
+
+/* Nav Elements styling */
+.nav_elements {
+  width: 23vw;
+  height: 10vh;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  border-bottom: 1px solid #0b0808;
+  border-top: 1px solid #433a3a;
+  box-shadow: 1px 1px 1px 0px black;
+  background-color: #262626;
+}
+
+.nav_elements:hover {
+  transform: translate(2px);
+  background-color: #363636;
+  cursor: pointer;
+}
+
+/* Card styling */
+.card {
+  width: 300px;
+  height: 250px;
+  margin: 15px;
+  background-color: #5C6BC0;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 1px 1px 13px 3px #424242;
+}
+
+.card:hover {
+  box-shadow: inset 0px 0px 7px 3px rgb(255 255 255 / 75%);
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+/* Add project card */
+#add_project {
+  border: 1px solid white;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+  animation: pulse-red 2s infinite;
+}
+
+#add_project:hover {
+  border: 3px solid white;
+  animation: none;
+}
+
+@keyframes pulse-red {
+  0% {
+    /* transform: scale(0.95); 255, 82, 82*/
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+
+  70% {
+    /* transform: scale(1); */
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+
+  100% {
+    /* transform: scale(0.95); */
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+#add_icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background-image: radial-gradient(#ffffff, #008ae100);
+}
