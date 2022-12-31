@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/home.css">
 
-<div class="main_container">
+<div id="main_container">
     <div class="left_nav">
         <div class="nav_elements">
             NAV
@@ -12,7 +12,7 @@
         <div class="nav_elements">Nav1</div>
     </div>
     <div class="content_container">
-        <div class="card" id="add_project">
+        <div class="card" id="add_project" onclick="toggle_form()">
             <div id="add_icon">
                 <img src="/images/plus-solid.svg" alt="" srcset="">
             </div>
@@ -29,6 +29,20 @@
         <div class="card">5</div>
         <div class="card">6</div>
     </div>
-</div>
 
+
+</div>
+<div class="new_project_form_container" id="get_form">
+    <span onclick="toggle_form()">X</span>
+    <form action="/project" method="post" class="new_project_form">
+        <!-- <label for="name">Name Of Project : </label> -->
+        <input type="text" name="name" id="name" placeholder="Name of Project..." required><br>
+        <!-- <label for="description">Description : </label> -->
+        <input type="textarea" name="description" id="description" placeholder="Description..." required><br>
+        <!-- <label for="author">Author : </label> -->
+        <input type="text" name="author" id="author" placeholder="Author..." required><br>
+        <!-- <input type="submit" value="CREATE"> -->
+        <button type="submit">Create Project</button>
+    </form>
+</div>
 <script src="/js/home.js"></script>

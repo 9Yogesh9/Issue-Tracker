@@ -11,7 +11,4 @@ const db = mongoose.connection.once('open', ()=>{
     console.log(`Data flowing through Mongo...`);
 });
 
-// connection
-// db
-
 module.exports = db;

@@ -1,5 +1,5 @@
 /* Rough containers */
-.main_container {
+#main_container {
   width: 100%;
   height: 90vh;
   color: #EEEEEE;
@@ -70,11 +70,19 @@
   cursor: pointer;
 }
 
+/* BLUR Effect for new project addition */
+.blur_control {
+  filter: blur(20px);
+  pointer-events: none;
+  user-select: none;
+}
+
 /* Add project card */
 #add_project {
   border: 1px solid white;
   box-shadow: 0 0 0 0 rgba(180, 180, 180, 1);
   animation: pulse-beat 2s infinite;
+  transition: 0.5s;
 }
 
 #add_project:hover {
@@ -82,15 +90,90 @@
   animation: none;
 }
 
+.new_project_form_container {
+  position: fixed;
+  width: 600px;
+  top: 20%;
+  left: 32%;
+  padding: 50px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  /* transform: translate(-50%,-50%); */
+  box-shadow: 0px 5px 30px rgba(0, 0, 0, .30);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+
+.new_project_form_container span{
+  color: rgb(230, 38, 38);
+  font-size: 22pt;
+  cursor: pointer;
+  text-shadow: 0 1px 14px #6d6d6d;
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+
+.new_project_form_container span:hover{
+  text-shadow:none;
+  color: rgb(255, 0, 0);
+}
+
+.form_visiblity_control{
+  top: 25%;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.new_project_form {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new_project_form input {
+  margin: 10px;
+  padding: 10px;
+  font-family: serif;
+  font-size: 20pt;
+  text-align: center;
+  outline: none;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #2e2c2c;
+}
+
+.new_project_form input::placeholder {
+  color: rgb(159, 158, 159);
+  text-align: left;
+}
+
+.new_project_form button {
+  padding: 10px;
+  font-size: 17pt;
+  font-weight: 600;
+  border-radius: 13px;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px 3px black;
+  background-color: #5C6BC0;
+}
+
 @keyframes pulse-beat {
   0% {
     box-shadow: 0 0 0 0 rgba(180, 180, 180, 0.7);
   }
-  
+
   70% {
     box-shadow: 0 0 0 10px rgba(180, 180, 180, 0);
   }
-  
+
   100% {
     box-shadow: 0 0 0 0 rgba(180, 180, 180, 0);
   }
