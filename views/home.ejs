@@ -17,24 +17,19 @@
                 <img src="/images/plus-solid.svg" alt="" srcset="">
             </div>
         </div>
-        <div class="card">
-            ABC
-        </div>
-        <div class="card">3</div>
-        <div class="card">4</div>
-        <div class="card">5</div>
-        <div class="card">6</div>
-        <div class="card">3</div>
-        <div class="card">4</div>
-        <div class="card">5</div>
-        <div class="card">6</div>
+        <% for(project of projects) { %> 
+            <div class="card">
+                <span><%= project.name %></span>
+                <span><%= project.author %></span>
+            </div>            
+        <% } %>
     </div>
 
 
 </div>
 <div class="new_project_form_container" id="get_form">
     <span onclick="toggle_form()">X</span>
-    <form action="/project" method="post" class="new_project_form">
+    <form action="/project/create" method="post" class="new_project_form">
         <!-- <label for="name">Name Of Project : </label> -->
         <input type="text" name="name" id="name" placeholder="Name of Project..." required><br>
         <!-- <label for="description">Description : </label> -->
