@@ -1,18 +1,27 @@
 const Projects = require('../models/project');
 
-module.exports.create = (req, res) => {
-    Projects.create({
-        name: req.body.name.trim(),
-        description: req.body.description.trim(),
-        author: req.body.author.trim()
-    }, (err, project) => {
-        if (err) {
-            console.log(`Error in creating project ${err}`);
+module.exports.create = async (req, res) => {
+
+    try {
+        let project = await Projects.create({
+            name: req.body.name.trim(),
+            description: req.body.description.trim(),
+            author: req.body.author.trim()
+        });
+        if (req.xhr) {
+            return res.status(200).json({
+                data: {
+                    project
+                },
+                message: "Project Created !"
+            })
+        }
+    } catch (error) {
+        if (error) {
+            console.log(`Error in creating the project ${error}`);
             return;
         }
-        return res.redirect('back');
-    })
-
+    }
 }
 
 module.exports.delete = (req, res) => {
@@ -27,8 +36,8 @@ module.exports.delete = (req, res) => {
     })
 }
 
-module.exports.deleteAll = (req,res) => {
-    Projects.deleteMany({},(err, project)=>{
+module.exports.deleteAll = (req, res) => {
+    Projects.deleteMany({}, (err, project) => {
         if (err) {
             console.log(`Error in deleting project ${err}`);
             return;

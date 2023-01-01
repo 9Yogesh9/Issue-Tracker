@@ -17,11 +17,22 @@
                 <img src="/images/plus-solid.svg" alt="" srcset="">
             </div>
         </div>
-        <% for(project of projects) { %> 
+        <% for(project of projects) { %>
             <div class="card">
-                <span><%= project.name %></span>
-                <span><%= project.author %></span>
-            </div>            
+                <div class="part1">
+                    <h2>
+                        <%= project.name %>
+                    </h2>
+                    <p>
+                        <%= project.author %>
+                    </p>
+                </div>
+                <div class="part2">
+                    <div class="delete_project" onclick="delete_project(`<%= project._id %>`)">
+                        X
+                    </div>
+                </div>
+            </div>
         <% } %>
     </div>
 
@@ -29,14 +40,10 @@
 </div>
 <div class="new_project_form_container" id="get_form">
     <span onclick="toggle_form()">X</span>
-    <form action="/project/create" method="post" class="new_project_form">
-        <!-- <label for="name">Name Of Project : </label> -->
+    <form action="/project/create" method="post" id="new_project_form">
         <input type="text" name="name" id="name" placeholder="Name of Project..." required><br>
-        <!-- <label for="description">Description : </label> -->
-        <input type="textarea" name="description" id="description" placeholder="Description..." required><br>
-        <!-- <label for="author">Author : </label> -->
+        <textarea name="description" id="" cols="23" rows="2" placeholder="Description..." required></textarea>
         <input type="text" name="author" id="author" placeholder="Author..." required><br>
-        <!-- <input type="submit" value="CREATE"> -->
         <button type="submit">Create Project</button>
     </form>
 </div>
