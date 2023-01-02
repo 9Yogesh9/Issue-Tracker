@@ -24,19 +24,37 @@ module.exports.create = async (req, res) => {
     }
 }
 
+module.exports.details = async (req, res) => {
+    try {
+        let project = await Projects.findById(req.params.id);
+        res.render('project_details', {
+            project_details: {
+                name: project.name,
+                description: project.description,
+                author: project.author
+            }
+        });
+    } catch (error) {
+        if (error) {
+            console.log(`Error in sending the project details ${error}`);
+            return res.send("Internal server error !");
+        }
+    }
+}
+
 module.exports.delete = async (req, res) => {
 
     try {
-        let project = await Projects.deleteOne({id:req.body.id});
-        if(req.xhr){
+        let project = await Projects.deleteOne({ id: req.body.id });
+        if (req.xhr) {
             return res.status(200).json({
-                data : {
-                    project_id : project._id
+                data: {
+                    project_id: project._id
                 },
                 message: "Project Deleted !"
             })
         }
-        
+
     } catch (error) {
         if (error) {
             console.log(`Error in deleting the project ${error}`);

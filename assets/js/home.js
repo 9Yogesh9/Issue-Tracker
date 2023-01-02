@@ -32,8 +32,8 @@ createProject();
 
 // Render the new project created 
 function paste_new_project(project) {
-    let new_project = `<div class="card">
-                            <div class="part1">
+    let new_project = `<div class="card" id='card_${project._id}'>
+                            <div class="part1" onclick="show_details('${project._id}')">
                                 <h2>${project.name}</h2>
                                 <p>${project.author}</p>
                             </div>
@@ -64,4 +64,9 @@ function delete_project(project_id) {
             }
         })
     }
+}
+
+// Redirect to project details page
+function show_details(project_id){
+    window.open(`/project/project_details/${project_id}`, "_blank");
 }

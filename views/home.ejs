@@ -19,7 +19,7 @@
         </div>
         <% for(project of projects) { %>
             <div class="card" id='card_<%= project._id %>'>
-                <div class="part1">
+                <div class="part1" onclick="show_details('<%= project._id %>')">
                     <h2>
                         <%= project.name %>
                     </h2>
@@ -28,7 +28,7 @@
                     </p>
                 </div>
                 <div class="part2">
-                    <div class="delete_project" onclick="delete_project(`<%= project._id %>`)">
+                    <div class="delete_project" onclick="delete_project('<%= project._id %>')">
                         X
                     </div>
                 </div>
