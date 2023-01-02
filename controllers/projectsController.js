@@ -19,21 +19,39 @@ module.exports.create = async (req, res) => {
     } catch (error) {
         if (error) {
             console.log(`Error in creating the project ${error}`);
-            return;
+            return res.send("Internal server error !");
         }
     }
 }
 
-module.exports.delete = (req, res) => {
+module.exports.delete = async (req, res) => {
 
-    Projects.deleteOne({ id: req.body.id }, (err, project) => {
-        if (err) {
-            console.log(`Error in deleting project ${err}`);
-            return;
+    try {
+        let project = await Projects.deleteOne({id:req.body.id});
+        if(req.xhr){
+            return res.status(200).json({
+                data : {
+                    project_id : project._id
+                },
+                message: "Project Deleted !"
+            })
         }
-        // console.log(`Project Deleted ${project}`);
-        res.redirect('back');
-    })
+        
+    } catch (error) {
+        if (error) {
+            console.log(`Error in deleting the project ${error}`);
+            return res.send("Internal server error !");
+        }
+    }
+
+    // Projects.deleteOne({ id: req.body.id }, (err, project) => {
+    //     if (err) {
+    //         console.log(`Error in deleting project ${err}`);
+    //         return;
+    //     }
+    //     // console.log(`Project Deleted ${project}`);
+    //     res.redirect('back');
+    // })
 }
 
 module.exports.deleteAll = (req, res) => {

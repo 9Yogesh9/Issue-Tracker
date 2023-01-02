@@ -4,6 +4,14 @@ const app = express();
 const dataBase = require('./config/mongoose');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
+const sassMiddleware =require('node-sass-middleware');
+
+app.use(sassMiddleware({
+    src: './assets/scss',
+    dest: './assets/css',
+    outputStyle: 'extended',
+    prefix:  '/css'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+}));
 
 // Setting static files path
 app.use(express.static('./assets'));

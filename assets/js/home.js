@@ -49,5 +49,19 @@ function paste_new_project(project) {
 
 // Delete the project
 function delete_project(project_id) {
-    console.log(project_id);
+    let confirm_delete = confirm("Are you sure to delete the project ? \n All the data related to project will be erased. \n To abort click on cancel.");
+
+    if (confirm_delete) {
+        $.ajax({
+            type: 'post',
+            url: `/project/delete/${project_id}`,
+            success: (data) => {
+                console.log(`Project deleted !`);
+                $(`#card_${project_id}`).remove();
+            },
+            error: (error) => {
+                console.log(`Project can't be deleted`);
+            }
+        })
+    }
 }
