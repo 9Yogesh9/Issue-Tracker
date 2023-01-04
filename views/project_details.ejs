@@ -1,6 +1,102 @@
 <link rel="stylesheet" href="/css/project_details.css">
-<h1>Project_details</h1>
-    <p><%= project_details.name %></p>
-    <p><%= project_details.description %></p>
-    <p><%= project_details.author %></p>
+<div id="main_container">
+    <div class="heading">
+        <h1>
+            <%= project_details.name %>
+        </h1>
+        <p>
+            <%= project_details.author %>
+        </p>
+    </div>
+    <div class="information">
+        <p>
+            <%= project_details.description %>
+        </p>
+    </div>
+    <div class="operations">
+        <div class="search_box">
+            <div class="desc_title_search">
+                <textarea name="title_desc_search" id="" cols="10" rows="30"
+                    placeholder="Title or Description search..."></textarea>
+            </div>
+            <div class="author_search">
+                <textarea name="author_search" id="" cols="10" rows="30" placeholder="Author search..."></textarea>
+            </div>
+            <div class="label_search">
+                <div class="label_container">
+                    <label for="ch1">Checkbox1</label>
+                    <input type="checkbox" name="" id="ch1">
+                    <label for="ch2">Checkbox2</label>
+                    <input type="checkbox" name="" id="ch2">
+                    <label for="ch3">Checkbox3</label>
+                    <input type="checkbox" name="" id="ch3">
+                    <label for="ch1">Checkbox1</label>
+                    <input type="checkbox" name="" id="ch1">
+                    <label for="ch2">Checkbox2</label>
+                    <input type="checkbox" name="" id="ch2">
+                    <label for="ch3">Checkbox3</label>
+                    <input type="checkbox" name="" id="ch3">
+                    <label for="ch1">Checkbox1</label>
+                    <input type="checkbox" name="" id="ch1">
+                    <label for="ch2">Checkbox2</label>
+                    <input type="checkbox" name="" id="ch2">
+                    <label for="ch3">Checkbox3</label>
+                    <input type="checkbox" name="" id="ch3">
+                </div>
+            </div>
+            <button type="submit"> Search </button>
+        </div>
+        <div class="bugs_container">
+            <div class="bug">
+                <div class="bug_head">
+                    <div class="bug_title">BUG1</div>
+                    <div class="bug_author">auth1</div>
+                </div>
+                <div class="bug_description">
+                    BUG DESC 1
+                </div>
+            </div>
+            <div class="bug">
+                <div class="bug_head">
+                    <div class="bug_title">BUG1</div>
+                    <div class="bug_author">auth1</div>
+                </div>
+                <div class="bug_description">
+                    BUG DESC 1
+                </div>
+            </div>
+            <div class="bug">
+                <div class="bug_head">
+                    <div class="bug_title">BUG1</div>
+                    <div class="bug_author">auth1</div>
+                </div>
+                <div class="bug_description">
+                    BUG DESC 1
+                </div>
+            </div>
+            <div class="bug">
+                <div class="bug_head">
+                    <div class="bug_title">BUG1</div>
+                    <div class="bug_author">auth1</div>
+                </div>
+                <div class="bug_description">
+                    BUG DESC 1
+                </div>
+            </div>
+            <button type="submit" onclick="toggle_form()"><span>+</span></button>
+        </div>
+    </div>
+
+</div>
+
+<div class="new_issue_form_container" id="get_form">
+    <span onclick="toggle_form()">X</span>
+    <form action="" method="" id="new_issue_form">
+        <input type="text" name="name" id="name" placeholder="Title..." required><br>
+        <textarea name="description" id="" cols="23" rows="2" placeholder="Description..." required></textarea>
+        <input type="text" name="author" id="author" placeholder="Author..." required><br>
+        <button type="submit">Create Issue</button>
+    </form>
+</div>
+
 <script src="/js/project_details.js"></script>

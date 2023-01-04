@@ -9,7 +9,7 @@ const sassMiddleware =require('node-sass-middleware');
 app.use(sassMiddleware({
     src: './assets/scss',
     dest: './assets/css',
-    outputStyle: 'extended',
+    outputStyle: 'compressed',
     prefix:  '/css'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
 }));
 
