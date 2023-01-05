@@ -195,7 +195,7 @@ body {
 .new_issue_form_container {
     position: fixed;
     width: 600px;
-    top: 15vh;
+    top: 13vh;
     left: 33vw;
     padding: 50px;
     background-color: white;
@@ -225,7 +225,7 @@ body {
 }
 
 .form_visiblity_control {
-    top: 25vh;
+    top: 19vh;
     visibility: visible;
     opacity: 1;
     transition: 0.5s;
@@ -234,6 +234,7 @@ body {
 
 #new_issue_form {
     display: flex;
+    width: 100%;
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -277,6 +278,7 @@ body {
     }
 
     button {
+        margin-top: 9px;
         padding: 10px;
         font-size: 17pt;
         font-weight: 600;
@@ -284,5 +286,27 @@ body {
         cursor: pointer;
         box-shadow: 0px 2px 4px 3px #2f2e2e;
         background-color: #BDBDBD;
+    }
+
+    #display_labels{
+        display: flex;
+        width: 100%;
+        height: 10vh;
+        border-radius: 5px;
+        box-shadow: inset 0px 0px 4px 1px #4d4c4c;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-y: auto;
+    }
+
+    span{
+        position: relative;
+        color: #eeeeee;
+        height: 5vh;
+        padding: 6px;
+        background-color: #616161;
+        border-radius: 5px;
+        font-size: 18pt;
+        margin: 4px;
     }
 }
