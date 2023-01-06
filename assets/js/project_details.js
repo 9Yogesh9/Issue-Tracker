@@ -15,10 +15,18 @@ let label_list = [];
 labels.addEventListener('keydown', (e) => {
 
     let get_value = labels.value;
+    let suggestions = $('.search_suggest ul');
+    suggestions.empty();
+
     if(!get_value.length) return;
     // console.log(get_value);
     let results = label_list.filter(a => a.includes(get_value));
     // console.log(results);
+
+    results.forEach(a =>{
+        let list_item = `<li>${a}</li>`;
+        suggestions.append($(list_item));
+    })
 
     if (e.key === 'Enter') {
         

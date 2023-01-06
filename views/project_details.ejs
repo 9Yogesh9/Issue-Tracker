@@ -91,16 +91,16 @@
 
 <div class="new_issue_form_container" id="get_form">
     <span onclick="toggle_form()">X</span>
-    <form action="" method="" id="new_issue_form">
+    <form action="" method="" id="new_issue_form" autocomplete="off">
         <input type="text" name="name" id="name" placeholder="Title..." required><br>
         <textarea name="description" id="" cols="23" rows="2" placeholder="Description..." required></textarea>
         <input type="text" name="author" id="author" placeholder="Author..." required><br>
         <input type="text" name="labels" id="labels" placeholder="Enter Labels...">
+        <div class="search_suggest">
+            <ul>
+            </ul>
+        </div>
         <div id="display_labels">
-            <!-- <span id="l1">Java</span>
-                <span id="l2">Javascript</span>
-                <span id="l3">C++</span>
-                <span id="l4">Python</span> -->
         </div>
         <button type="submit">Create Issue</button>
     </form>

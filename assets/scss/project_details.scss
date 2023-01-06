@@ -310,3 +310,33 @@ body {
         margin: 4px;
     }
 }
+
+#labels:focus + div{
+    display: block;
+}
+
+.search_suggest{
+    display: none;
+    background-color: #BDBDBD;
+    position: absolute;
+    width: 32vw;
+    top: 49.5vh;
+    overflow-y: auto;
+    border-radius: 5px;
+    max-height: 12vh;
+    z-index: 1;
+
+    ul{
+        padding: 0px;
+        list-style: none;
+        font-size: 17pt;
+        
+        li{
+            cursor: pointer;
+            padding: 4px;
+            border-bottom: 1px solid;
+        }
+    }
+
+
+}
