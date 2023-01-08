@@ -26,13 +26,13 @@ module.exports.create = async (req, res) => {
 
 module.exports.details = async (req, res) => {
     try {
-        let project = await Projects.findById(req.params.id);
+        let project = await Projects.findById(req.params.id)
+            .populate({
+                path:'issue'
+            });
+        // res.locals.meera = `project${project.id}`;
         res.render('project_details', {
-            project_details: {
-                name: project.name,
-                description: project.description,
-                author: project.author
-            }
+            project_details: project
         });
     } catch (error) {
         if (error) {

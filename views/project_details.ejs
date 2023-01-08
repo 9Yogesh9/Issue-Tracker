@@ -47,42 +47,24 @@
             <button type="submit"> Search </button>
         </div>
         <div class="bugs_container">
-            <div class="bug">
-                <div class="bug_head">
-                    <div class="bug_title">BUG1</div>
-                    <div class="bug_author">auth1</div>
-                </div>
-                <div class="bug_description">
-                    BUG DESC 1
-                </div>
-            </div>
-            <div class="bug">
-                <div class="bug_head">
-                    <div class="bug_title">BUG1</div>
-                    <div class="bug_author">auth1</div>
-                </div>
-                <div class="bug_description">
-                    BUG DESC 1
-                </div>
-            </div>
-            <div class="bug">
-                <div class="bug_head">
-                    <div class="bug_title">BUG1</div>
-                    <div class="bug_author">auth1</div>
-                </div>
-                <div class="bug_description">
-                    BUG DESC 1
-                </div>
-            </div>
-            <div class="bug">
-                <div class="bug_head">
-                    <div class="bug_title">BUG1</div>
-                    <div class="bug_author">auth1</div>
-                </div>
-                <div class="bug_description">
-                    BUG DESC 1
-                </div>
-            </div>
+            <% if(project_details.issue.length == 0){ %>
+                <h1>No Bugs Reported</h1>   
+                <h1><%= project_details.id %></h1> 
+            <% }else{ %> 
+                <% for(bug of project_details.issue) {%> 
+                    <div class="bug">
+                        <div class="bug_head">
+                            <div class="bug_title"><%= bug.title %></div>
+        <!-- Print bug labels and take note of them in project db -->
+                            <div class="bug_author"><%= bug.author %></div>
+                        </div>
+                        <div class="bug_description">
+                            <%= bug.description %>
+                        </div>
+                    </div>
+                <% } %> 
+            <% } %> 
+
             <button type="submit" onclick="toggle_form()"><span>+</span></button>
         </div>
     </div>
@@ -91,11 +73,12 @@
 
 <div class="new_issue_form_container" id="get_form">
     <span onclick="toggle_form()">X</span>
-    <form action="" method="" id="new_issue_form" autocomplete="off">
+    <form action="/issues/create" method="POST" id="new_issue_form" autocomplete="off">
         <input type="text" name="name" id="name" placeholder="Title..." required><br>
         <textarea name="description" id="" cols="23" rows="2" placeholder="Description..." required></textarea>
         <input type="text" name="author" id="author" placeholder="Author..." required><br>
         <input type="text" name="labels" id="labels" placeholder="Enter Labels...">
+        <input type="hidden" name="project_id" id="" value="<%= project_details.id %>">
         <div class="search_suggest">
             <ul>
             </ul>

@@ -120,6 +120,9 @@ body {
 }
 
 .bugs_container {
+    background-image: linear-gradient(45deg, #131313, #00000075);
+    border-radius: 7px;
+    box-shadow: 0px 0px 4px 2px beige;
     width: 58vw;
     height: 100%;
     padding: 10px;
@@ -152,6 +155,7 @@ body {
 }
 
 .bug {
+    border: 1px solid #ed82ed80;
     width: 55vw;
     background-color: #3d3b3b;
     border-radius: 14px;
@@ -286,6 +290,13 @@ body {
         cursor: pointer;
         box-shadow: 0px 2px 4px 3px #2f2e2e;
         background-color: #BDBDBD;
+
+        &:hover{
+            box-shadow: 0px 2px 4px 3px #757373;
+            background-color: #c0c0c0;
+            color: #141414;
+            transform: scale3d(1.05, 1.05, 1.05);
+        }
     }
 
     #display_labels{
