@@ -15,7 +15,7 @@ module.exports.create = (req, res) => {
             labels: req.body.labels,
             project: req.body.project_id
         }, (err, new_issue) => {
-            if(err){
+            if (err) {
                 console.log(`Internal server error in creating new issue ${err}`);
                 return;
             }
@@ -25,4 +25,29 @@ module.exports.create = (req, res) => {
             res.redirect('back');
         })
     })
+}
+
+module.exports.delete = async (req, res) => {
+    try {
+        let bug = await Issues.findById(req.params.id, "id project").exec();;
+        // Note the project ID for which the issue was created
+        let project_id = bug.project;
+        bug.remove();
+
+        await Projects.findByIdAndUpdate(project_id, { $pull: { issue: req.params.id } }).exec();
+        if (req.xhr) {
+            return res.status(200).json({
+                data: {
+                    bug
+                },
+                message: "Issue Closed !"
+            })
+        }
+
+    } catch (error) {
+        if (error) {
+            console.log(`Error in closing the issue ${error}`);
+            return res.send("Internal server error !");
+        }
+    }
 }

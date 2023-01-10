@@ -181,11 +181,29 @@ body {
         }
     }
 
-    .bug_description {
-        height: 10vh;
-        padding: 10px;
-        overflow-y: auto;
-        color: #E0E0E0;
+    .divide {
+        display: flex;
+        align-items: center;
+
+        .bug_description {
+            width: 95%;
+            height: 10vh;
+            padding: 10px;
+            overflow-y: auto;
+            color: #E0E0E0;
+        }
+
+        .del_button {
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 3px 1px white;
+            background-color: red;
+            cursor: pointer;
+
+            &:hover{
+                transform: scale(1.25) ;
+            }
+        }
     }
 }
 
@@ -291,7 +309,7 @@ body {
         box-shadow: 0px 2px 4px 3px #2f2e2e;
         background-color: #BDBDBD;
 
-        &:hover{
+        &:hover {
             box-shadow: 0px 2px 4px 3px #757373;
             background-color: #c0c0c0;
             color: #141414;
@@ -299,7 +317,7 @@ body {
         }
     }
 
-    #display_labels{
+    #display_labels {
         display: flex;
         width: 100%;
         height: 10vh;
@@ -310,7 +328,7 @@ body {
         overflow-y: auto;
     }
 
-    span{
+    span {
         position: relative;
         color: #eeeeee;
         height: 5vh;
@@ -322,11 +340,11 @@ body {
     }
 }
 
-#labels:focus + div{
+#labels:focus+div {
     display: block;
 }
 
-.search_suggest{
+.search_suggest {
     display: none;
     background-color: #BDBDBD;
     position: absolute;
@@ -337,12 +355,12 @@ body {
     max-height: 12vh;
     z-index: 1;
 
-    ul{
+    ul {
         padding: 0px;
         list-style: none;
         font-size: 17pt;
-        
-        li{
+
+        li {
             cursor: pointer;
             padding: 4px;
             border-bottom: 1px solid;

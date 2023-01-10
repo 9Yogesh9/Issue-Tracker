@@ -47,25 +47,34 @@
             <button type="submit"> Search </button>
         </div>
         <div class="bugs_container">
-            <% if(project_details.issue.length == 0){ %>
-                <h1>No Bugs Reported</h1>   
-                <h1><%= project_details.id %></h1> 
-            <% }else{ %> 
-                <% for(bug of project_details.issue) {%> 
-                    <div class="bug">
-                        <div class="bug_head">
-                            <div class="bug_title"><%= bug.title %></div>
-        <!-- Print bug labels and take note of them in project db -->
-                            <div class="bug_author"><%= bug.author %></div>
+            <% if(project_details.issue.length==0){ %>
+                <h1>No Bugs Reported</h1>
+                <h1>
+                    <%= project_details.id %>
+                </h1>
+                <% }else{ %>
+                    <% for(bug of project_details.issue) {%>
+                        <div class="bug" id="issue_<%= bug.id %>">
+                            <div class="bug_head">
+                                <div class="bug_title">
+                                    <%= bug.title %>
+                                </div>
+                                <!-- Print bug labels and take note of them in project db -->
+                                <div class="bug_author">
+                                    <%= bug.author %>
+                                </div>
+                            </div>
+                            <div class="divide">
+                                <div class="bug_description">
+                                    <%= bug.description %>
+                                </div>
+                                <div class="del_button" onclick="close_issue('<%= bug.id %>')">X</div>
+                            </div>
                         </div>
-                        <div class="bug_description">
-                            <%= bug.description %>
-                        </div>
-                    </div>
-                <% } %> 
-            <% } %> 
+                        <% } %>
+                            <% } %>
 
-            <button type="submit" onclick="toggle_form()"><span>+</span></button>
+                                <button type="submit" onclick="toggle_form()"><span>+</span></button>
         </div>
     </div>
 

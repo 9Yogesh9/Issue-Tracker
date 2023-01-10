@@ -60,3 +60,22 @@ let create_issue = function(){
 }
 
 // create_issue();
+
+// close issue
+function close_issue(issue_id) {
+    let confirm_delete = confirm("Are you sure to close the issue ? \n To abort click on cancel.");
+
+    if (confirm_delete) {
+        $.ajax({
+            type: 'post',
+            url: `/issues/delete/${issue_id}`,
+            success: (data) => {
+                console.log(`Issue closed !`);
+                $(`#issue_${issue_id}`).remove();
+            },
+            error: (error) => {
+                console.log(`Issue can't be closed !`);
+            }
+        })
+    }
+}
