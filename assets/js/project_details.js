@@ -17,51 +17,89 @@ labels.addEventListener('keydown', (e) => {
     let get_value = labels.value;
     let suggestions = $('.search_suggest ul');
     suggestions.empty();
+    $('.search_suggest').toggle(true);
 
-    if(!get_value.length) return;
+    if (!get_value.length) return;
     // console.log(get_value);
     let results = label_list.filter(a => a.includes(get_value));
     // console.log(results);
 
-    results.forEach(a =>{
+    results.forEach(a => {
         let list_item = `<li>${a}</li>`;
         suggestions.append($(list_item));
     })
 
     if (e.key === 'Enter') {
-        
+        $('.search_suggest').toggle(false);
         let get_index = label_list.indexOf(get_value);
 
-        if(get_index < 0){
+        if (get_index < 0) {
             let tag = document.createElement('span');
             tag.innerHTML = `${get_value}`;
             label_list.push(get_value);
-            tag.setAttribute('id',`lab${get_value}`);
+            tag.setAttribute('id', `lab${get_value}`);
             tag.setAttribute('onclick', `remove_element('lab${get_value}','${get_value}')`);
-            
-            display_labels.appendChild(tag);            
+
+            display_labels.appendChild(tag);
         }
 
         labels.value = "";
     }
 });
 
-function remove_element(ele_id,val){
+function remove_element(ele_id, val) {
     // console.log(`val ${val} ${label_list.indexOf(val)}`);
-    label_list.splice(label_list.indexOf(val),1);
+    label_list.splice(label_list.indexOf(val), 1);
     document.getElementById(ele_id).remove();
 }
 
-let create_issue = function(){
+// Create Issue
+let create_issue = function () {
     let new_issue_form = $('#new_issue_form');
-    new_issue_form.submit((e)=>{
+    new_issue_form.submit((e) => {
         e.preventDefault();
+        $.ajax({
+            type: 'post',
+            url: `/issues/create`,
+            data: new_issue_form.serialize(),
+            success: (data) => {
+                paste_new_issue(data.bug_details.bug);
+                toggle_form();
+                $('#new_issue_form').trigger("reset");
+            },
+            error: (error) => {
+                console.log(error.responseText);
+            }
+        })
     })
 }
 
-// create_issue();
+create_issue();
 
-// close issue
+// paste the HTML for new bug
+function paste_new_issue(bug) {
+    let new_bug = `<div class="bug" id="issue_${bug._id}">
+    <div class="bug_head">
+        <div class="bug_title">
+            ${bug.title}
+        </div>
+        <div class="bug_author">
+            ${bug.author}
+        </div>
+    </div>
+    <div class="divide">
+        <div class="bug_description">
+            ${bug.description}
+        </div>
+        <div class="del_button" onclick="close_issue('${bug._id}')">X</div>
+    </div>
+</div>`
+
+    $('.bugs_container').append($(new_bug));
+
+}
+
+// Close issue
 function close_issue(issue_id) {
     let confirm_delete = confirm("Are you sure to close the issue ? \n To abort click on cancel.");
 
@@ -70,7 +108,6 @@ function close_issue(issue_id) {
             type: 'post',
             url: `/issues/delete/${issue_id}`,
             success: (data) => {
-                console.log(`Issue closed !`);
                 $(`#issue_${issue_id}`).remove();
             },
             error: (error) => {
