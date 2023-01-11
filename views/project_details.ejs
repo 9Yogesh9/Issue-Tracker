@@ -79,7 +79,7 @@
 
 <div class="new_issue_form_container" id="get_form">
     <span onclick="toggle_form()">X</span>
-    <form action="/issues/create" method="POST" id="new_issue_form" autocomplete="off">
+    <form action="" method="" id="new_issue_form" autocomplete="off">
         <input type="text" name="name" id="name" placeholder="Title..." required><br>
         <textarea name="description" id="" cols="23" rows="2" placeholder="Description..." required></textarea>
         <input type="text" name="author" id="author" placeholder="Author..." required><br>
@@ -93,6 +93,11 @@
         </div>
         <button type="submit">Create Issue</button>
     </form>
+
+    <div id="check_before_submit">
+        <input type="checkbox" name="bug_val" id="confirmation_box">
+        <label for="confirmation_box">Confirm to create Issue</label>
+    </div>
 
 </div>
 

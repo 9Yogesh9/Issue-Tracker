@@ -58,19 +58,25 @@ let create_issue = function () {
     let new_issue_form = $('#new_issue_form');
     new_issue_form.submit((e) => {
         e.preventDefault();
-        $.ajax({
-            type: 'post',
-            url: `/issues/create`,
-            data: new_issue_form.serialize(),
-            success: (data) => {
-                paste_new_issue(data.bug_details.bug);
-                toggle_form();
-                $('#new_issue_form').trigger("reset");
-            },
-            error: (error) => {
-                console.log(error.responseText);
-            }
-        })
+        if ($('#confirmation_box').is(":checked")) {
+            $.ajax({
+                type: 'post',
+                url: `/issues/create`,
+                data: {
+                    new_bug: new_issue_form.serialize(),
+                    // new_bug: new_issue_form.serializeArray(),
+                    labels: label_list
+                },
+                success: (data) => {
+                    paste_new_issue(data.bug_details.bug);
+                    toggle_form();
+                    $('#new_issue_form').trigger("reset");
+                },
+                error: (error) => {
+                    console.log(error.responseText);
+                }
+            })
+        }
     })
 }
 
