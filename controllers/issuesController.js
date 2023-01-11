@@ -14,7 +14,7 @@ module.exports.create = async (req, res) => {
             project: bug_data.project_id
         });
 
-        await Projects.findByIdAndUpdate(req.body.project_id, { $push: { issue: bug } }).exec();
+        await Projects.findByIdAndUpdate(bug_data.project_id, { $push: { issue: bug } }).exec();
 
         if (req.xhr) {
             return res.status(200).json({

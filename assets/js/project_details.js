@@ -64,7 +64,6 @@ let create_issue = function () {
                 url: `/issues/create`,
                 data: {
                     new_bug: new_issue_form.serialize(),
-                    // new_bug: new_issue_form.serializeArray(),
                     labels: label_list
                 },
                 success: (data) => {

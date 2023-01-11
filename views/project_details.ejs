@@ -56,6 +56,13 @@
                                 <div class="bug_title">
                                     <%= bug.title %>
                                 </div>
+                                <div class="label_holder">
+                                        <% for(label of bug.labels) { %>
+                                            <% if(label){ %> 
+                                                <div class="labels"><%= label %> </div>
+                                            <% } %> 
+                                        <% } %>
+                                </div>
                                 <!-- Print bug labels and take note of them in project db -->
                                 <div class="bug_author">
                                     <%= bug.author %>
