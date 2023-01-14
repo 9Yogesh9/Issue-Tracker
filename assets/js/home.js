@@ -56,7 +56,6 @@ function delete_project(project_id) {
             type: 'post',
             url: `/project/delete/${project_id}`,
             success: (data) => {
-                console.log(`Project deleted !`);
                 $(`#card_${project_id}`).remove();
             },
             error: (error) => {

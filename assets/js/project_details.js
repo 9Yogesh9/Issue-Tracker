@@ -26,8 +26,7 @@ function getLabelData() {
         url: `/project/project_labels/${project_id}`,
         success: (label_list) => {
             let project_labs = label_list.project_labels;
-            if(!(project_labs.constructor === Object && Object.keys(project_labs).length === 0))
-            {
+            if (!(project_labs.constructor === Object && Object.keys(project_labs).length === 0)) {
                 project_label_list = JSON.parse(project_labs);
                 paste_labels();
             }
@@ -107,7 +106,7 @@ let create_issue = function () {
                     $('#display_labels').empty();
                     $('#confirmation_box').prop('checked', false);
                     label_list = [],
-                    paste_labels();
+                        paste_labels();
                 },
                 error: (error) => {
                     console.log(error.responseText);
@@ -161,7 +160,7 @@ function close_issue(issue_id) {
             url: `/issues/delete/${issue_id}`,
             success: (labels) => {
                 // Refresh the project labels
-                if(labels.issues == 1) $('.bugs_container h1').show();
+                if (labels.issues == 1) $('.bugs_container h1').show();
                 project_label_list = labels.project_labels;
                 paste_labels();
                 $(`#issue_${issue_id}`).remove();
@@ -178,7 +177,44 @@ function paste_labels() {
     $('.label_container').empty();
     for (label in project_label_list) {
         let label_component = `<div class="label_hold"><label for="${label}">${label}</label>
-        <input type="checkbox" name="" id="${label}"></div>`;
+        <input type="checkbox" name="" id="${label}" onclick="addToList('${label}')"></div>`;
         $('.label_container').append(label_component);
     }
+}
+
+//------------------- Search functionality ------------------------
+let search_btn = function () {
+    $('.search_box button').click((e) => {
+        e.preventDefault();
+        let title_desc = $('#title_desc_search').val().trim();
+        let author = $('#author_search').val().trim();
+
+        let project_id = $('#project_id').val();
+
+        $.ajax({
+            method: 'post',
+            url: `/search/do_search/${project_id}`,
+            data: {
+                title_desc, author, search_labels
+            },
+            success: (data) => {
+                $('.bugs_container .bug').remove();
+                data.forEach(bug => paste_new_issue(bug));
+            },
+            error: (error) => {
+                console.log("Error in search ", error.responseText);
+            }
+        })
+    })
+}
+search_btn();
+
+// Collect the labels to perform the filter function
+let search_labels = [];
+function addToList(label_id) {
+    let val = $(`#${label_id}`).is(":checked");
+    if (val)
+        search_labels.push(label_id);
+    else
+        search_labels.splice(search_labels.indexOf(label_id), 1);
 }
