@@ -1,4 +1,4 @@
-// To control the visibility of new project form
+// To control the visibility of new issue form
 let main_container = document.getElementById('main_container');
 let get_form = document.getElementById('get_form');
 
@@ -10,7 +10,32 @@ function toggle_form() {
 // While creating labels for new project
 let labels = document.getElementById('labels');
 let display_labels = document.getElementById('display_labels');
+
+// Temp labels list to for new labels
 let label_list = [];
+
+// holding the list of labels for the whole project
+let project_label_list = {};
+// Get Label data on load
+getLabelData();
+// Function to get the project labels data
+function getLabelData() {
+    let project_id = $('#project_id').val();
+    $.ajax({
+        type: 'get',
+        url: `/project/project_labels/${project_id}`,
+        success: (label_list) => {
+            let project_labs = label_list.project_labels;
+            if(!(project_labs.constructor === Object && Object.keys(project_labs).length === 0))
+            {
+                project_label_list = JSON.parse(project_labs);
+                paste_labels();
+            }
+        }, error: (error) => {
+            console.log(error.responseText);
+        }
+    })
+}
 
 labels.addEventListener('keydown', (e) => {
 
@@ -21,7 +46,8 @@ labels.addEventListener('keydown', (e) => {
 
     if (!get_value.length) return;
     // console.log(get_value);
-    let results = label_list.filter(a => a.includes(get_value));
+    // let results = label_list.filter(a => a.includes(get_value));
+    let results = Object.keys(project_label_list).filter(key => key.includes(get_value));
     // console.log(results);
 
     results.forEach(a => {
@@ -59,17 +85,29 @@ let create_issue = function () {
     new_issue_form.submit((e) => {
         e.preventDefault();
         if ($('#confirmation_box').is(":checked")) {
+            label_list.forEach((i) => {
+                if (!project_label_list[i])
+                    project_label_list[i] = 1;
+                else
+                    project_label_list[i] += 1;
+            })
             $.ajax({
                 type: 'post',
                 url: `/issues/create`,
                 data: {
                     new_bug: new_issue_form.serialize(),
-                    labels: label_list
+                    labels: label_list,
+                    bulk_labels: JSON.stringify(project_label_list)
                 },
                 success: (data) => {
                     paste_new_issue(data.bug_details.bug);
+                    $('.bugs_container h1').hide();
                     toggle_form();
                     $('#new_issue_form').trigger("reset");
+                    $('#display_labels').empty();
+                    $('#confirmation_box').prop('checked', false);
+                    label_list = [],
+                    paste_labels();
                 },
                 error: (error) => {
                     console.log(error.responseText);
@@ -83,10 +121,19 @@ create_issue();
 
 // paste the HTML for new bug
 function paste_new_issue(bug) {
+    let labels = "";
+    for (label of bug.labels) {
+        if (label) {
+            labels += `<div class="labels">${label}</div>`;
+        }
+    }
     let new_bug = `<div class="bug" id="issue_${bug._id}">
     <div class="bug_head">
         <div class="bug_title">
             ${bug.title}
+        </div>
+        <div class="label_holder">
+            ${labels}
         </div>
         <div class="bug_author">
             ${bug.author}
@@ -112,12 +159,26 @@ function close_issue(issue_id) {
         $.ajax({
             type: 'post',
             url: `/issues/delete/${issue_id}`,
-            success: (data) => {
+            success: (labels) => {
+                // Refresh the project labels
+                if(labels.issues == 1) $('.bugs_container h1').show();
+                project_label_list = labels.project_labels;
+                paste_labels();
                 $(`#issue_${issue_id}`).remove();
             },
             error: (error) => {
                 console.log(`Issue can't be closed !`);
             }
         })
+    }
+}
+
+// Paste labels
+function paste_labels() {
+    $('.label_container').empty();
+    for (label in project_label_list) {
+        let label_component = `<div class="label_hold"><label for="${label}">${label}</label>
+        <input type="checkbox" name="" id="${label}"></div>`;
+        $('.label_container').append(label_component);
     }
 }

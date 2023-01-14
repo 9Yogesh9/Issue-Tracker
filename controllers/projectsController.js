@@ -6,7 +6,8 @@ module.exports.create = async (req, res) => {
         let project = await Projects.create({
             name: req.body.name.trim(),
             description: req.body.description.trim(),
-            author: req.body.author.trim()
+            author: req.body.author.trim(),
+            labels: {}
         });
         if (req.xhr) {
             return res.status(200).json({
@@ -28,7 +29,7 @@ module.exports.details = async (req, res) => {
     try {
         let project = await Projects.findById(req.params.id)
             .populate({
-                path:'issue'
+                path: 'issue'
             });
         // res.locals.meera = `project${project.id}`;
         res.render('project_details', {
@@ -40,6 +41,26 @@ module.exports.details = async (req, res) => {
             return res.send("Internal server error !");
         }
     }
+}
+
+module.exports.project_labels = async (req, res) => {
+    let project = await Projects.findById(req.params.id).exec();
+
+    try {
+        if (req.xhr) {
+            return res.status(200).json({
+                project_labels: (project.labels[0]),
+                message: "Project labels fetched successfully !"
+            })
+        }
+
+    } catch (error) {
+        if (error) {
+            console.log(`Error in sending the project labels ${error}`);
+            return res.send("Internal server error !");
+        }
+    }
+
 }
 
 module.exports.delete = async (req, res) => {

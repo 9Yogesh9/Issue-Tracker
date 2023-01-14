@@ -24,24 +24,6 @@
             </div>
             <div class="label_search">
                 <div class="label_container">
-                    <label for="ch1">Checkbox1</label>
-                    <input type="checkbox" name="" id="ch1">
-                    <label for="ch2">Checkbox2</label>
-                    <input type="checkbox" name="" id="ch2">
-                    <label for="ch3">Checkbox3</label>
-                    <input type="checkbox" name="" id="ch3">
-                    <label for="ch1">Checkbox1</label>
-                    <input type="checkbox" name="" id="ch1">
-                    <label for="ch2">Checkbox2</label>
-                    <input type="checkbox" name="" id="ch2">
-                    <label for="ch3">Checkbox3</label>
-                    <input type="checkbox" name="" id="ch3">
-                    <label for="ch1">Checkbox1</label>
-                    <input type="checkbox" name="" id="ch1">
-                    <label for="ch2">Checkbox2</label>
-                    <input type="checkbox" name="" id="ch2">
-                    <label for="ch3">Checkbox3</label>
-                    <input type="checkbox" name="" id="ch3">
                 </div>
             </div>
             <button type="submit"> Search </button>
@@ -63,7 +45,7 @@
                                             <% } %> 
                                         <% } %>
                                 </div>
-                                <!-- Print bug labels and take note of them in project db -->
+                                <!-- take note of them in project db -->
                                 <div class="bug_author">
                                     <%= bug.author %>
                                 </div>
@@ -91,7 +73,7 @@
         <textarea name="description" id="" cols="23" rows="2" placeholder="Description..." required></textarea>
         <input type="text" name="author" id="author" placeholder="Author..." required><br>
         <input type="text" name="labels" id="labels" placeholder="Enter Labels...">
-        <input type="hidden" name="project_id" id="" value="<%= project_details.id %>">
+        <input type="hidden" name="project_id" id="project_id" value="<%= project_details.id %>">
         <div class="search_suggest">
             <ul>
             </ul>

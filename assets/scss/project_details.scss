@@ -95,13 +95,19 @@ body {
         height: 16vh;
         padding: 5px;
 
+        .label_hold{
+            background-color: purple;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         label {
             margin: 4px;
         }
 
         input[type="checkbox"] {
-            width: 8vw;
-            height: 1vw;
+            margin-right: 1vw;
         }
     }
 
@@ -155,12 +161,17 @@ body {
 }
 
 .bug {
-    border: 1px solid #ed82ed80;
+    border: 2px solid #ed82ed00;
     width: 55vw;
     background-color: #3d3b3b;
     border-radius: 14px;
     margin: 2px;
     padding: 15px;
+    transition: all 0.5s;
+
+    &:hover {
+        border: 2px solid #ed82ed;
+    }
 
     .bug_head {
         display: flex;
@@ -174,14 +185,14 @@ body {
             text-shadow: 0 0 2px #dc0f0f;
         }
 
-        .label_holder{
+        .label_holder {
             display: flex;
             align-items: center;
             max-width: 30vw;
             padding: 3px;
             overflow-x: auto;
 
-            .labels{
+            .labels {
                 background-color: #616482;
                 color: #abff19;
                 padding: 3px;
@@ -217,8 +228,8 @@ body {
             background-color: red;
             cursor: pointer;
 
-            &:hover{
-                transform: scale(1.25) ;
+            &:hover {
+                transform: scale(1.25);
             }
         }
     }
@@ -387,7 +398,7 @@ body {
 
 }
 
-#check_before_submit{
+#check_before_submit {
     color: #2b2a2a;
     width: 12vw;
     height: 4vh;
