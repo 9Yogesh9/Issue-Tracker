@@ -1,53 +1,55 @@
 const Issues = require('../models/issues');
 const Projects = require('../models/project');
 
+// Handles the search functionality on project details page
 module.exports.do_search = async (req, res) => {
 
     try {
         let author = req.body.author;
-        let title_desc = req.body.title_desc;
+        let title = req.body.title;
+        let description = req.body.description;
         let search_labels = req.body.search_labels;
 
-        // console.log(req.body);
-        // console.log(author, title_desc, search_labels);
         let bugs_list;
-        if (author && title_desc && search_labels) {
+        if (author && title && description && search_labels) {
             bugs_list = await Issues.find({
                 $and: [
                     { project: req.params.id },
-                    { $or: [{ "title": new RegExp(title_desc, 'i') }] },
+                    { $or: [{ "title": new RegExp(title, 'i') }] },
                     { $or: [{ "author": new RegExp(author, 'i') }] },
-                    { $or: [{ "description": new RegExp(title_desc, 'i') }] },
+                    { $or: [{ "description": new RegExp(description, 'i') }] },
                     { $or: [{ labels: { $all: search_labels } }] },
                 ]
             });
         }
-        else if (author && title_desc) {
+        else if (author && title && description) {
             bugs_list = await Issues.find({
                 $and: [
                     { project: req.params.id },
                     { $or: [{ "author": new RegExp(author, 'i') }] },
-                    { $or: [{ "title": new RegExp(title_desc, 'i') }] },
-                    { $or: [{ "description": new RegExp(title_desc, 'i') }] }
+                    { $or: [{ "title": new RegExp(title, 'i') }] },
+                    { $or: [{ "description": new RegExp(description, 'i') }] }
                 ]
             });
-        } else if (title_desc) {
+        } else if (title && description) {
             bugs_list = await Issues.find({
                 $and: [
                     { project: req.params.id },
-                    { $or: [{ "title": new RegExp(title_desc, 'i') }] },
-                    { $or: [{ "description": new RegExp(title_desc, 'i') }] }
+                    { $or: [{ "title": new RegExp(title, 'i') }] },
+                    { $or: [{ "description": new RegExp(description, 'i') }] }
                 ]
             });
         } else if (author) {
             bugs_list = await Issues.find({ project: req.params.id, "author": new RegExp(author, 'i') });
         } else if (search_labels) {
-            bugs_list = await Issues.find({ project: req.params.id, labels: { $all: search_labels } });
+            bugs_list = await Issues.find({ project: req.params.id, labels: { $in: search_labels } });
+        } else if (description) {
+            bugs_list = await Issues.find({ project: req.params.id, "description": new RegExp(description, 'i') });
+        } else if (title) {
+            bugs_list = await Issues.find({ project: req.params.id, "title": new RegExp(title, 'i') });
         } else {
-            bugs_list = await Issues.find();
+            bugs_list = await Issues.find({ project: req.params.id });
         }
-
-        // console.log(bugs_list);
 
         if (req.xhr) {
             return res.status(200).json(bugs_list);

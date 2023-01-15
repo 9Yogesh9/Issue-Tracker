@@ -9,15 +9,15 @@
   justify-content: space-evenly;
 }
 
-.left_nav {
-  width: 25%;
-  height: 80vh;
-  border-right: 1px solid white;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
+// .left_nav {
+//   width: 25%;
+//   height: 80vh;
+//   border-right: 1px solid white;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   align-items: center;
+// }
 
 .content_container {
   width: 70%;
@@ -29,32 +29,33 @@
 }
 
 /* Nav Elements styling */
-.nav_elements {
-  width: 23vw;
-  height: 10vh;
-  margin-bottom: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50px;
-  border-bottom: 1px solid #0b0808;
-  border-top: 1px solid #433a3a;
-  box-shadow: 1px 1px 1px 0px black;
-  background-color: #262626;
+// .nav_elements {
+//   width: 23vw;
+//   height: 10vh;
+//   margin-bottom: 3px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 50px;
+//   border-bottom: 1px solid #0b0808;
+//   border-top: 1px solid #433a3a;
+//   box-shadow: 1px 1px 1px 0px black;
+//   background-color: #262626;
 
-  &:hover {
-    transform: translate(2px);
-    background-color: #363636;
-    cursor: pointer;
-  }
-}
+//   &:hover {
+//     transform: translate(2px);
+//     background-color: #363636;
+//     cursor: pointer;
+//   }
+// }
 
 /* Card styling */
 .card {
   width: 300px;
   height: 250px;
   margin: 15px;
-  background-color: #5C6BC0;
+  background-color: #4b77ff;
+  background-image: radial-gradient(transparent, #3c3c3c);
   border-radius: 30px;
   display: flex;
   justify-content: center;
@@ -91,14 +92,14 @@
   cursor: pointer;
 
   h2 {
-    font-size: 19pt;
+    font-size: 22pt;
     font-family: 'Ubuntu', sans-serif;
   }
 
   p {
     margin: 1vh;
     color: #c2bebe;
-    font-size: 16pt;
+    font-size: 18pt;
     font-family: 'East Sea Dokdo', cursive;
   }
 
@@ -109,7 +110,7 @@
   width: 10%;
   display: flex;
   align-items: flex-start;
-  background-color: #4fff00a6;
+  // background-color: #4fff00a6;
   border-radius: 0px 30px 30px 0px;
   box-shadow: -2px 1px 5px 4px black;
 }

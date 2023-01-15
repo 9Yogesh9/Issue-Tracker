@@ -186,7 +186,8 @@ function paste_labels() {
 let search_btn = function () {
     $('.search_box button').click((e) => {
         e.preventDefault();
-        let title_desc = $('#title_desc_search').val().trim();
+        let title = $('#title_search').val().trim();
+        let description = $('#desc_search').val().trim();
         let author = $('#author_search').val().trim();
 
         let project_id = $('#project_id').val();
@@ -195,7 +196,7 @@ let search_btn = function () {
             method: 'post',
             url: `/search/do_search/${project_id}`,
             data: {
-                title_desc, author, search_labels
+                title, description, author, search_labels
             },
             success: (data) => {
                 $('.bugs_container .bug').remove();
