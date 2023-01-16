@@ -1,0 +1,43 @@
+    <!-- <div class="left_nav">
+        <div class="nav_elements">
+            NAV
+        </div>
+        <div class="nav_elements">Nav1</div>
+        <div class="nav_elements">Nav1</div>
+        <div class="nav_elements">Nav1</div>
+        <div class="nav_elements">Nav1</div>
+        <div class="nav_elements">Nav1</div>
+    </div> -->
+
+SCSS
+
+// .left_nav {
+//   width: 25%;
+//   height: 80vh;
+//   border-right: 1px solid white;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   align-items: center;
+// }
+
+/* Nav Elements styling */
+// .nav_elements {
+//   width: 23vw;
+//   height: 10vh;
+//   margin-bottom: 3px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 50px;
+//   border-bottom: 1px solid #0b0808;
+//   border-top: 1px solid #433a3a;
+//   box-shadow: 1px 1px 1px 0px black;
+//   background-color: #262626;
+
+//   &:hover {
+//     transform: translate(2px);
+//     background-color: #363636;
+//     cursor: pointer;
+//   }
+// }

@@ -10,11 +10,9 @@
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Ubuntu:wght@300&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Major+Mono+Display&family=Ubuntu:wght@300&display=swap"
         rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
-    </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +20,7 @@
 
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <%- style %>
 
         <!-- Include Jquery -->
@@ -37,7 +36,9 @@
     <%- include('_header'); %>
         <%- body %>
 
-            <%- script %>
+            <%- include('_footer') %>
+
+                <%- script %>
 </body>
 
 </html>

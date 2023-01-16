@@ -31,7 +31,6 @@ module.exports.details = async (req, res) => {
             .populate({
                 path: 'issue'
             });
-        // res.locals.meera = `project${project.id}`;
         res.render('project_details', {
             project_details: project
         });
@@ -82,24 +81,4 @@ module.exports.delete = async (req, res) => {
             return res.send("Internal server error !");
         }
     }
-
-    // Projects.deleteOne({ id: req.body.id }, (err, project) => {
-    //     if (err) {
-    //         console.log(`Error in deleting project ${err}`);
-    //         return;
-    //     }
-    //     // console.log(`Project Deleted ${project}`);
-    //     res.redirect('back');
-    // })
-}
-
-module.exports.deleteAll = (req, res) => {
-    Projects.deleteMany({}, (err, project) => {
-        if (err) {
-            console.log(`Error in deleting project ${err}`);
-            return;
-        }
-        // console.log(`Project Deleted ${project}`);
-        res.send('Data Cleared !');
-    })
 }

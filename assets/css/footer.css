@@ -1,0 +1,22 @@
+.reach_out{
+    position: absolute;
+    bottom: 2px;
+    left: 46%;
+    display: flex;
+    width: 7vw;
+    justify-content: space-evenly;
+}
+
+.reach_out div{
+    filter: invert(0.5);
+    transition: all 0.5s;    
+}
+
+.reach_out div:hover{
+    filter: invert(1);
+}
+
+.reach_out div img{
+    width: 25px;
+    height: 25px;
+}

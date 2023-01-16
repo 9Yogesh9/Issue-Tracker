@@ -1,5 +1,4 @@
 const Issues = require('../models/issues');
-const Projects = require('../models/project');
 
 // Handles the search functionality on project details page
 module.exports.do_search = async (req, res) => {
@@ -18,7 +17,7 @@ module.exports.do_search = async (req, res) => {
                     { $or: [{ "title": new RegExp(title, 'i') }] },
                     { $or: [{ "author": new RegExp(author, 'i') }] },
                     { $or: [{ "description": new RegExp(description, 'i') }] },
-                    { $or: [{ labels: { $all: search_labels } }] },
+                    { $or: [{ labels: { $in: search_labels } }] },
                 ]
             });
         }
@@ -62,8 +61,6 @@ module.exports.do_search = async (req, res) => {
     }
 
 }
-
-
 
 
 // db.users.find(name: new RegExp(search)) //For substring search, case sensitive.
