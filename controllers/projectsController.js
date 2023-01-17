@@ -1,4 +1,5 @@
 const Projects = require('../models/project');
+const Issues = require('../models/issues');
 
 module.exports.create = async (req, res) => {
 
@@ -63,14 +64,12 @@ module.exports.project_labels = async (req, res) => {
 }
 
 module.exports.delete = async (req, res) => {
-
     try {
-        let project = await Projects.deleteOne({ id: req.body.id });
+        let project = await Projects.findByIdAndDelete(req.params.id);
+        await Issues.deleteMany({project:req.params.id});
+
         if (req.xhr) {
             return res.status(200).json({
-                data: {
-                    project_id: project._id
-                },
                 message: "Project Deleted !"
             })
         }

@@ -1,16 +1,8 @@
 const Project = require('../models/project');
 
-module.exports.home = (req, res) => {
-
-    Project.find({}, (err, projects) => {
-        if (err) {
-            console.log(`Error in sending project to homepage`);
-            return;
-        }
-
-        return res.render('home', {
-            projects: projects
-        });
-    })
-
+module.exports.home = async (req, res) => {
+    let projects = await Project.find({}).sort('name').exec();
+    return res.render('home', {
+        projects: projects
+    });
 }

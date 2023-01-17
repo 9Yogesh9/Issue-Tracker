@@ -7,6 +7,10 @@
     justify-content: space-evenly;
 }
 
+.toggle_display{
+    display:none;
+}
+
 .reach_out div{
     filter: invert(0.5);
     transition: all 0.5s;    

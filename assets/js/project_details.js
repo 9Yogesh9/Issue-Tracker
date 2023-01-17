@@ -1,10 +1,12 @@
 // To control the visibility of new issue form
 let main_container = document.getElementById('main_container');
 let get_form = document.getElementById('get_form');
+let reach_out = document.getElementsByClassName('reach_out')[0];
 
 function toggle_form() {
     main_container.classList.toggle('blur_control');
     get_form.classList.toggle('form_visiblity_control');
+    reach_out.classList.toggle('toggle_display');
 }
 
 // While creating labels for new project

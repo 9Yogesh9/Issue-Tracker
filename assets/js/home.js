@@ -1,10 +1,12 @@
 // To control the visibility of new project form
 let main_container = document.getElementById('main_container');
 let get_form = document.getElementById('get_form');
+let reach_out = document.getElementsByClassName('reach_out')[0];
 
 function toggle_form() {
     main_container.classList.toggle('blur_control');
     get_form.classList.toggle('form_visiblity_control');
+    reach_out.classList.toggle('toggle_display');
 }
 // --------------------------
 
@@ -50,7 +52,7 @@ function paste_new_project(project) {
 // Delete the project
 function delete_project(project_id) {
     let confirm_delete = confirm("Are you sure to delete the project ? \n All the data related to project will be erased. \n To abort click on cancel.");
-
+    console.log("Project to be deleted : " +project_id );
     if (confirm_delete) {
         $.ajax({
             type: 'post',
