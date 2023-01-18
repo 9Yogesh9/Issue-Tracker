@@ -1,6 +1,6 @@
-# Project Issue-Tracker
+# Project Issue-Tracker <a href="https://issue-tracker-5bns.onrender.com" target="_blank"> Live App</a>
 
-<p>This app will help you <strong>track the projects and there ongoing issues</strong>.<p>
+<p>This app will help you <strong>track the projects and there ongoing issues</strong>. <a href="https://issue-tracker-5bns.onrender.com" target="_blank"> Open live app </a><p>
 <p>Following are the features of this app:</p>
 
 <ol>
@@ -36,6 +36,8 @@
   </ol>
 </li>
 </ol>
+
+<h2><a href="https://issue-tracker-5bns.onrender.com" target="_blank">Explore in real !</a></h2> This will open the live hosted application
 
 <h2>Prerequisites:</h2>
   <ol>
