@@ -52,6 +52,7 @@
     <li>Run <code>npm i</code> this will install all dependencies.</li>
     <li>Run <code>nodemon index.js</code> (if this command doesn't work, then nodemon is not installed globally in your system, please run <code>npm i nodemon</code> before running this command.)</li>
     <li>The app will be live on port 8000, you can access it using url <code>http://localhost:8000</code> in your browser.</li>
+    <p><strong>Note : To run in local environment and link to your local mongo data base just uncomment the line 8 and comment line 3 and 9 in <code>mongoose.js</code> as the project is linked to cloud data base.</strong></p>
   </ol>
   
 <h2>Screenshots:</h2>
